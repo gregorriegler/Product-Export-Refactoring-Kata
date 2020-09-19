@@ -12,18 +12,24 @@ public class XMLExporter {
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         xml.append("<orders>");
         for (Order order : orders) {
-            xml.append("<order");
-            xml.append(" id='");
-            xml.append(order.getId());
-            xml.append("'>");
-            for (Product product : order.getProducts()) {
-                xml.append(productAsXml(product));
-            }
-
-            xml.append("</order>");
+            xml.append(orderAsXml(order));
         }
 
         xml.append("</orders>");
+        return xml.toString();
+    }
+
+    private static String orderAsXml(Order order) {
+        StringBuilder xml = new StringBuilder();
+        xml.append("<order");
+        xml.append(" id='");
+        xml.append(order.getId());
+        xml.append("'>");
+        for (Product product : order.getProducts()) {
+            xml.append(productAsXml(product));
+        }
+
+        xml.append("</order>");
         return xml.toString();
     }
 

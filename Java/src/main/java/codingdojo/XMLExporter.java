@@ -17,37 +17,43 @@ public class XMLExporter {
             xml.append(order.getId());
             xml.append("'>");
             for (Product product : order.getProducts()) {
-                xml.append("<product");
-                xml.append(" id='");
-                xml.append(product.getId());
-                xml.append("'");
-                if (product.isEvent()) {
-                    xml.append(" stylist='");
-                    xml.append(stylistFor(product));
-                    xml.append("'");
-                }
-
-                if (product.getWeight() > 0) {
-                    xml.append(" weight='");
-                    xml.append(product.getWeight());
-                    xml.append("'");
-                }
-
-                xml.append(">");
-                xml.append("<price");
-                xml.append(" currency='");
-                xml.append(product.getPrice().getCurrency());
-                xml.append("'>");
-                xml.append(product.getPrice().getAmount());
-                xml.append("</price>");
-                xml.append(product.getName());
-                xml.append("</product>");
+                xml.append(productAsXml(product));
             }
 
             xml.append("</order>");
         }
 
         xml.append("</orders>");
+        return xml.toString();
+    }
+
+    private static String productAsXml(Product product) {
+        StringBuilder xml = new StringBuilder();
+        xml.append("<product");
+        xml.append(" id='");
+        xml.append(product.getId());
+        xml.append("'");
+        if (product.isEvent()) {
+            xml.append(" stylist='");
+            xml.append(stylistFor(product));
+            xml.append("'");
+        }
+
+        if (product.getWeight() > 0) {
+            xml.append(" weight='");
+            xml.append(product.getWeight());
+            xml.append("'");
+        }
+
+        xml.append(">");
+        xml.append("<price");
+        xml.append(" currency='");
+        xml.append(product.getPrice().getCurrency());
+        xml.append("'>");
+        xml.append(product.getPrice().getAmount());
+        xml.append("</price>");
+        xml.append(product.getName());
+        xml.append("</product>");
         return xml.toString();
     }
 
@@ -95,7 +101,7 @@ public class XMLExporter {
     }
 
     public static String exportStore(Store store) {
-        StringBuffer xml = new StringBuffer();
+        StringBuilder xml = new StringBuilder();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
         xml.append("<store");

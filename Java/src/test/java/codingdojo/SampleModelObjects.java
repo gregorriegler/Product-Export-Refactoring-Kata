@@ -12,14 +12,14 @@ public class SampleModelObjects {
     public static Product WildRose = new Product("Wild Rose", "PURFUME01", 200, new Price(34.99D, "USD"));
     public static Product CocoaButter = new Product("Cocoa Butter", "SKIN_CREAM01", 250, new Price(10.99D, "USD"));
 
-    public static Store FlagshipStore = new Store("Nordstan", "4189", new Product[] { CherryBloom });
+    public static Store FlagshipStore = new Store("Nordstan", new Product[] { CherryBloom });
 
     // Store events add themselves to the stocked items at their store
     public static Product Masterclass = new StoreEvent("Eyeshadow Masterclass", "EVENT01", FlagshipStore, new Price(119.99D, "USD"));
     public static Product Makeover = new StoreEvent("Makeover", "EVENT02", FlagshipStore, new Price(149.99D, "USD"));
 
     public static Order RecentOrder = new Order("1234", Util.fromIsoDate("2018-09-01T00:00Z"),
-            FlagshipStore, new Product[] { Makeover });
+        new Product[] { Makeover });
     public static Order OldOrder = new Order("1235", Util.fromIsoDate("2017-09-01T00:00Z"),
-            FlagshipStore, new Product[] { CherryBloom });
+        new Product[] { CherryBloom });
 }

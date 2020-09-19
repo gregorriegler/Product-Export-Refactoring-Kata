@@ -14,10 +14,6 @@ public class Product {
         this.price = price;
     }
 
-    public void saveToDatabase() {
-        throw new UnsupportedOperationException("missing from this exercise - shouldn't be called from a unit test");
-    }
-
     public String getName() {
         return name;
     }

@@ -13,11 +13,9 @@ public class Store {
 
     private final Map<String, Product> itemsInStock = new HashMap<>();
     private final String name;
-    private final String id;
 
-    public Store(String name, String id, Product[] products) {
+    public Store(String name, Product[] products) {
         this.name = name;
-        this.id = id;
         this.addStockedItems(products);
     }
 
@@ -31,25 +29,9 @@ public class Store {
         this.itemsInStock.put(storeEvent.getName(), storeEvent);
     }
 
-    public boolean hasItem(Product item) {
-        return itemsInStock.containsKey(item.getName());
-    }
-
-    public Product getItem(String name) {
-        return itemsInStock.get(name);
-    }
-
-    public String getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "Store{" + name + '}';
-    }
-
-    public void saveToDatabase() {
-        throw new UnsupportedOperationException("missing from this exercise - shouldn't be called from a unit test");
     }
 
     public String getName() {
